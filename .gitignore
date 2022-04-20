@@ -102,3 +102,10 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Tihi
+package-lock.json
+
+# Don't send data or configs to GitHub...
+data/
+config.json
