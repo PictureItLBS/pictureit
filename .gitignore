@@ -105,6 +105,7 @@ dist
 
 # Tihi
 package-lock.json
+pnpm-lock.yaml
 
 # Don't send data or configs to GitHub...
 data/

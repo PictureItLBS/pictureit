@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "description": "PictureIt is a social media platform aimed at image sharing.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
