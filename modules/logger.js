@@ -14,6 +14,6 @@ import colors from 'colors'
 export default function getLogger(prefix, clr="blue") {
     const color = colors[clr] ? clr : "blue"
     return function(...args) {
-        console.log(colors[color](`[ ${prefix} ]`), ...args)
+        console.log(colors[color](`${prefix} |`), ...args)
     }
 }
