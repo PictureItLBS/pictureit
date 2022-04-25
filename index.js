@@ -1,4 +1,5 @@
 import chokidar  from "chokidar"
+import docs      from "./routes/docs.js"
 import express   from "express"
 import fs        from "fs"
 import getLogger from "./modules/logger.js"
@@ -68,8 +69,9 @@ function startServer(debug) {
 
     server.use("/api",    routes.api)
     server.use("/app",    routes.app)
-    server.use("/static", express.static("./app/static"))
+    server.use("/docs",   docs)
     server.use("/images", express.static("./data/images"))
+    server.use("/static", express.static("./app/static"))
     server.get("/",       (_, res) => res.redirect("/app"))
 
     server.listen(
@@ -100,7 +102,7 @@ switch (process.argv[2] ?? null) {
             JSON.stringify({
                 mongo_uri: "mongodb+srv://username:password@localhost/pictureit",
                 port: 12345
-            })
+            }, null, 2)
         )
         log("Done!")
         break
