@@ -1,0 +1,21 @@
+{% extends "templates/base.njk" %}
+
+{% block head %}
+    <title>PictureIt - Docs</title>
+{% endblock %}
+
+{% block body %}
+    <h1>PictureIt Documentation</h1>
+
+    {% if error %}
+        <h2>Sorry, we encountered an error...</h2>
+        <p>{{ error }}</p>
+    {% endif %}
+
+    <h2>Here are all articles:</h2>
+    <div class="articles">
+        {% for article in articles %}
+            <a href="./{{ article }}">{{ article | replace("_", " ") | capitalize }}</a>
+        {% endfor %}
+    </div>
+{% endblock %}
