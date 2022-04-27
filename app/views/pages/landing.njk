@@ -1,1 +1,12 @@
-HELLO WORLD!
+{% extends "templates/base.njk" %}
+
+{% block body %}
+    <header>
+        Welcome to <span>Picture</span><span>It</span>!
+    </header>
+    <p>
+        PictureIt is an image publishing platform for students by students!
+    </p>
+    <a href="/login">Log In!</a>
+    <a href="/register">Register!</a>
+{% endblock %}
