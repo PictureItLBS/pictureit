@@ -108,5 +108,6 @@ package-lock.json
 pnpm-lock.yaml
 
 # Don't send data or configs to GitHub...
+app/static/main.css
 data/
 config.json
