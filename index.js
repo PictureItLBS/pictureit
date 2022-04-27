@@ -109,7 +109,7 @@ switch (process.argv[2] ?? null) {
 
     case "dev":
         compileScss()
-        startServer()
+        startServer(true)
         scssCompiler()
         break
 
