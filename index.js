@@ -3,7 +3,6 @@ import docs       from "./routes/docs.js"
 import express    from "express"
 import fs         from "fs"
 import getLogger  from "./modules/logger.js"
-import { initDB } from "./modules/database/handler.js"
 import nunjucks   from "nunjucks"
 import routes     from "./routes/entrypoint.js"
 import sass       from "sass"
@@ -105,14 +104,12 @@ switch (process.argv[2] ?? null) {
 
     case "dev":
         compileScss()
-        await initDB().catch(e => { console.dir(e); process.exit(1) })
         startServer(true)
         scssCompiler()
         break
 
     default:
         compileScss()
-        await initDB().catch(e => { console.dir(e); process.exit(1) })
         startServer()
         break
 }
