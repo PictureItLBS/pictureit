@@ -15,11 +15,11 @@ import argon2       from "argon2"
  * This function creates a user from a name and password. (This function does not save the user to the database!)
  * @param   {string} name     The name of the created password.
  * @param   {string} password The password (plaintext) for the user. (Will be SALTED and HASHED!)
- * @returns {User}   The newly created user. (NOT SAVED to the DATABASE.)
+ * @returns {Promise<User>}   The newly created user. (NOT SAVED to the DATABASE.)
  */
 export default function User(name, password) {
     return new Promise(
-        (resolve, reject) => {
+        async (resolve, reject) => {
             const hash = await argon2.hash(password)
                 .catch(err => reject(err))
 

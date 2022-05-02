@@ -1,11 +1,13 @@
-import chokidar  from "chokidar"
-import docs      from "./routes/docs.js"
-import express   from "express"
-import fs        from "fs"
-import getLogger from "./modules/logger.js"
-import nunjucks  from "nunjucks"
-import routes    from "./routes/entrypoint.js"
-import sass      from "sass"
+import chokidar   from "chokidar"
+import docs       from "./routes/docs.js"
+import express    from "express"
+import fs         from "fs"
+import getLogger  from "./modules/logger.js"
+import { initDB } from "./modules/database/handler.js"
+import nunjucks   from "nunjucks"
+import routes     from "./routes/entrypoint.js"
+import sass       from "sass"
+import settings   from "./modules/settings.js"
 
 // SETTINGS
 const PORT = 12345
@@ -97,24 +99,20 @@ switch (process.argv[2] ?? null) {
 
     case "default_config":
         log("Creating default config...")
-        fs.writeFileSync(
-            "config.json",
-            JSON.stringify({
-                mongo_uri: "mongodb+srv://username:password@localhost/pictureit",
-                port: 12345
-            }, null, 2)
-        )
+        fs.writeFileSync("config.json", JSON.stringify(settings, null, 2))
         log("Done!")
         break
 
     case "dev":
         compileScss()
+        await initDB().catch(e => { console.dir(e); process.exit(1) })
         startServer(true)
         scssCompiler()
         break
 
     default:
         compileScss()
+        await initDB().catch(e => { console.dir(e); process.exit(1) })
         startServer()
         break
 }
