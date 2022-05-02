@@ -5,27 +5,15 @@ import getLogger           from "../logger.js"
 const log    = getLogger("Database ", "blue")
 const client = new MongoClient(settings.mongo_uri)
 
-/**
- * @type {Db}
- */
-export let db = undefined
-
-/**
- * This function connects to the database.
- * !! IT SHOULD ONLY BE RAN ONCE WHEN THE SERVER IS STARTING !!
- * @returns {Promise} This promise resolves on success, and fails on errors.
- */
-export function initDB() {
-    return new Promise(
-        async (resolve, reject) => {
-            log("Connecting to the database...")
-            client.connect()
-                .catch(reject)
-                .then(() => {
-                    log("Connected to the database!")
-                    db = client.db(settings.db_name)
-                    resolve()
-               })
+log("Connecting to database...")
+await client.connect()
+    .catch(
+        err => {
+            log("Can't start DB!")
+            console.dir(err)
+            process.exit(1)
         }
     )
-}
+
+log("Connected to the database!")
+export const db = client.db(settings.db_name)
