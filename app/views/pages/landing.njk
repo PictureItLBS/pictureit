@@ -1,12 +1,15 @@
 {% extends "templates/base.njk" %}
 
 {% block body %}
+<main class="landing">
     <header>
         Welcome to <span>Picture</span><span>It</span>!
     </header>
     <p>
         PictureIt is an image publishing platform for students by students!
     </p>
-    <a href="/login">Log In!</a>
-    <a href="/register">Register!</a>
+    <a class="primary" href="/register">Register!</a>
+    <a class="secondary"href="/login">Log In!</a>
+    <img src="/static/logo.svg" alt="">
+</main>
 {% endblock %}

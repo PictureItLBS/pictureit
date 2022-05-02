@@ -1,0 +1,15 @@
+@use "partials/colours" as clr;
+
+.primary {
+    padding: 3rem;
+    background-color: clr.$primary;
+    display: grid;
+}
+
+.secondary {
+    padding: 3rem;
+    background-color: clr.$dark;
+    border-color: clr.$primary;
+    border-width: 2px;
+
+}
