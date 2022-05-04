@@ -1,0 +1,21 @@
+{% extends "templates/base.njk" %}
+
+{% block head %}
+<title>Login!</title>
+{% endblock %}
+
+{% block body %}
+    <form action="./login" method="post">
+        <h1>Log in!</h1>
+
+        <label for="username">Username:</label>
+        <input type="text" name="username" placeholder="FancyCat">
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" placeholder="|\/|'/ s|_|p3r s3cr37 p4ss\/\/0rd">
+
+        <button type="submit">Log in!</button>
+        <a href="/app/auth/register">Create Account</a>
+        <a href="#">Reset Password</a>
+    </form>
+{% endblock %}

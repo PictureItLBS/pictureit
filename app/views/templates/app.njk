@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" type="text/css" href="https://fonts.googleapis.com">
+    <link rel="preconnect" type="text/css" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/main.css">
+    {% block head %}
+        <title>PictureIt</title>
+    {% endblock %}
+</head>
+
+<body class="app">
+    <nav>
+        <a href="./feed">Feed</a>
+        <a href="./explore">Explore</a>
+        <a href="./profile">Profile</a>
+        <div class="spacer"></div>
+        <a href="./news">News</a>
+        <a href="./settings">Settings</a>
+    </nav>
+    <main>
+        {% block main %}{% endblock %}
+    </main>
+    <div class="quickies"></div>
+</body>

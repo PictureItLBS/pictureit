@@ -1,0 +1,37 @@
+@use "partials/colours" as clr;
+
+input, p, h1, label {
+    color: clr.$primary
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+input{
+    background-color: clr.$darker;
+    border-style: solid;
+    border-radius: 5px 5px 13px 5px;
+    border-color: clr.$primary;
+    width: 25rem;
+    height: 2rem;
+}
+
+p {
+
+}
+
+h1{
+}
+
+button {
+background-color: clr.$primary;
+color: clr.$dark;
+width: fit-content;
+height: 2rem;
+padding: 0 1rem;
+border-radius: 5px 5px 13px 5px;
+border: none
+}

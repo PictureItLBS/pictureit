@@ -6,9 +6,8 @@ const Users = db.collection("users")
 
 const auth = Router()
 
-// TODO: Make sure these paths is correct --------------------------------vvvvvvvvvvvvvvvvvvvv
-auth.get("/login",    (_, res) => res.respond(true, "Please log in...",   "pages/auth/log.njk", {}))
-auth.get("/register", (_, res) => res.respond(true, "Please register...", "pages/auth/log.njk", {}))
+auth.get("/login",    (_, res) => res.respond(true, "Please log in...",   "pages/auth/login.njk",    {}))
+auth.get("/register", (_, res) => res.respond(true, "Please register...", "pages/auth/register.njk", {}))
 
 auth.post(
     "/login",
@@ -21,7 +20,7 @@ auth.post(
                 {
                     error: "Please enter a username!",
                 },
-                "pages/auth/register",
+                "pages/auth/register.njk",
                 {}
             )
 
@@ -32,7 +31,7 @@ auth.post(
                     error: "Please enter a password!",
                     username
                 },
-                "pages/auth/register",
+                "pages/auth/register.njk",
                 {}
             )
 
@@ -43,7 +42,7 @@ auth.post(
                     error: "Password and password confirmation do not match!",
                     username
                 },
-                "pages/auth/register",
+                "pages/auth/register.njk",
                 {}
             )
 
@@ -54,7 +53,7 @@ auth.post(
                     error: "Username must be alphanumerical and between 2 and 32 characters!",
                     username
                 },
-                "pages/auth/register",
+                "pages/auth/register.njk",
                 {}
             )
 
@@ -65,7 +64,7 @@ auth.post(
                     error: "Username already taken!",
                     username
                 },
-                "pages/auth/register",
+                "pages/auth/register.njk",
                 {}
             )
 
@@ -78,7 +77,7 @@ auth.post(
                         err,
                         username
                     },
-                    "pages/auth/register",
+                    "pages/auth/register.njk",
                     {}
                 )
             ).then(
@@ -92,7 +91,7 @@ auth.post(
                                     err,
                                     username
                                 },
-                                "pages/auth/register",
+                                "pages/auth/register.njk",
                                 {}
                             )
                         )
@@ -109,8 +108,9 @@ auth.post(
 )
 
 auth.post(
-    "/register",
+    "/register.njk",
     (req, res) =>{
+        const { username, password } = req.body
 
     }
 )

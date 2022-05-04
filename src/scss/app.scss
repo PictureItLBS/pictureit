@@ -1,0 +1,29 @@
+@use "partials/colours" as clr;
+
+body.app {
+    display: grid;
+    grid-template-areas: 'aside main';
+    grid-template-columns: max-content 1fr;
+}
+
+nav {
+    grid-area: aside;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+
+    margin-right: 3rem;
+    padding: 2rem;
+    background-color: clr.$dark;
+    box-shadow: .5rem 0 1rem clr.$darker;
+
+    > .spacer {
+        flex-grow: 1;
+    }
+}
+
+main {
+    grid-area: main;
+}
