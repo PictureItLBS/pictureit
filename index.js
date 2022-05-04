@@ -20,22 +20,27 @@ function compileScss() {
 
     scssLog("Compiling SCSS...")
 
-    const { css } = sass.compile(
-        "./src/scss/main.scss",
-        {
-            sourceMap:  false,
-            alertColor: true,
-            alertAscii: false,
-            style:      "compressed"
-        }
-    )
+    try {
+        const { css } = sass.compile(
+            "./src/scss/main.scss",
+            {
+                sourceMap:  false,
+                alertColor: true,
+                alertAscii: false,
+                style:      "compressed"
+            }
+        )
 
-    fs.writeFileSync(
-        "./app/static/main.css",
-        css
-    )
+        fs.writeFileSync(
+            "./app/static/main.css",
+            css
+        )
 
-    scssLog("The SCSS is now compiled to CSS!")
+        scssLog("The SCSS is now compiled to CSS!")
+    } catch (error) {
+        scssLog("ENCONTERED AN ERROR!")
+        console.dir(error)
+    }
 }
 
 /**
