@@ -1,7 +1,7 @@
 import fs from "fs"
 
 if (!fs.existsSync("config.json"))
-    fs.writeFileSync("config.json", "")
+    fs.writeFileSync("config.json", "{}")
 
 const configFile = fs.readFileSync("config.json")
 const config     = JSON.parse(configFile.toString())
