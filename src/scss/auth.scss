@@ -5,8 +5,15 @@ input, p, h1, label {
 }
 
 .form-box {
-    display: flex;
+    display: flex; 
     justify-content: center;
+    height: 100vh;
+}
+
+form {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 
