@@ -1,4 +1,3 @@
-import bodyParser from "body-parser"
 import chokidar   from "chokidar"
 import docs       from "./routes/docs.js"
 import express    from "express"
@@ -74,7 +73,8 @@ function startServer(debug) {
         }
     )
 
-    server.use(bodyParser.urlencoded({ extended: true }))
+    server.use(express.json())
+    server.use(express.urlencoded({ extended: true }))
 
     server.use("/api",    routes.api)
     server.use("/app",    routes.app)

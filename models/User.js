@@ -20,8 +20,14 @@ import argon2       from "argon2"
 export default function User(name, password) {
     return new Promise(
         async (resolve, reject) => {
-            const hash = await argon2.hash(password)
-                .catch(err => reject(err))
+            const hash = await argon2.hash(
+                password,
+                {
+                    memoryCost: 32 * 1024,
+                    hashLength: 64,
+                    timeCost:   16,
+                }
+                ).catch(err => reject(err))
 
             /**
              * @type {User}

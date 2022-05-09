@@ -1,3 +1,4 @@
+import argon2     from "argon2"
 import { db }     from "../modules/database/handler.js"
 import { Router } from "express"
 import User       from "../models/User.js"
@@ -108,10 +109,82 @@ auth.post(
 )
 
 auth.post(
-    "/register.njk",
-    (req, res) =>{
+    "/login",
+    async (req, res) =>{
         const { username, password } = req.body
 
+        if (!username)
+            return res.respond(
+                false,
+                {
+                    error: "Please enter a username!",
+                },
+                "pages/auth/login.njk",
+                {}
+            )
+
+        if (!password)
+            return res.respond(
+                false,
+                {
+                    error: "Please enter a password!",
+                    username
+                },
+                "pages/auth/login.njk",
+                {}
+            )
+
+        /**
+         * @type {import("../models/User.js").User}
+         */
+        const user = await Users.findOne({ name: username })
+
+        if (!user)
+            return res.respond(
+                false,
+                {
+                    error: "That user doesn't exist!",
+                    username
+                },
+                "pages/auth/login.njk",
+                {}
+            )
+
+        argon2.verify(user.password, password)
+            .then(
+                verified => {
+                    if (!verified)
+                        return res.respond(
+                            false,
+                            {
+                                error: "Password is incorrect!",
+                                username
+                            },
+                            "pages/auth/login.njk",
+                            {}
+                        )
+
+                    // TODO: Implement COOKIE with JWT and so.
+
+                    if (req.originalUrl.startsWith("/api"))
+                        return res.send("Signed in...")
+
+                    res.redirect("/app/feed")
+                }
+            ).catch(
+                err => {
+                    console.dir(err)
+                    res.respond(
+                        false,
+                        {
+                            error: "Password is incorrect!",
+                            username
+                        },
+                        "pages/auth/login.njk",
+                        {}
+                    )
+                }
+            )
     }
 )
 
