@@ -1,11 +1,15 @@
 {% extends "templates/base.njk" %}
 
 {% block body %}
-    
+
     <div class="form-box">
 
         <form action="./register" method="post">
             <h1>Create account!</h1>
+
+            {% if data.error %}
+                <p>{{ data.error }}</p>
+            {% endif %}
 
             <label for="username">Username:</label>
             <input type="text" name="username" placeholder="FancyCat">
@@ -20,7 +24,7 @@
             <a href="/app/auth/login">Log in! </a>
             <a href="#">Reset Password</a>
 
-        </form> 
+        </form>
     </div>
 
 {% endblock %}

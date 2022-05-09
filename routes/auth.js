@@ -11,9 +11,9 @@ auth.get("/login",    (_, res) => res.respond(true, "Please log in...",   "pages
 auth.get("/register", (_, res) => res.respond(true, "Please register...", "pages/auth/register.njk", {}))
 
 auth.post(
-    "/login",
+    "/register",
     async (req, res) => {
-        const { username, password, confirmation } = req.body
+        const { username, password, confirmPass } = req.body
 
         if (!username)
             return res.respond(
@@ -36,7 +36,7 @@ auth.post(
                 {}
             )
 
-        if (password !== confirmation)
+        if (password !== confirmPass)
             return res.respond(
                 false,
                 {
