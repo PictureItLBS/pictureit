@@ -4,13 +4,15 @@ input, p, h1, label {
     color: clr.$primary
 }
 
-form {
+.form-box {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
 }
 
 
-input{
+
+
+input {
     background-color: clr.$darker;
     border-style: solid;
     border-radius: 5px 5px 13px 5px;
@@ -20,7 +22,7 @@ input{
 }
 
 p {
-
+    
 }
 
 h1{
