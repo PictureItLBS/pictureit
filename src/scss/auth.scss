@@ -1,24 +1,24 @@
 @use "partials/colours" as clr;
 
+.form-box {
+    display: flex; 
+    justify-content: center;
+    height: 100vh;
+}
 
 form {
-
-}
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+} 
 
 input, p, h1, label {
     color: clr.$primary
 }
 
-.form-box {
-    display: flex;
-    justify-content: center;
-}
-
 h1 {
     font-weight: 300;
 }
-
-
 
 input {
     background-color: clr.$darker;
@@ -29,16 +29,6 @@ input {
     height: 2rem;
 }
 
-<<<<<<< Updated upstream
-p {
-    
-}
-
-h1{
-}
-
-=======
->>>>>>> Stashed changes
 button {
 background-color: clr.$primary;
 color: clr.$dark;
@@ -52,4 +42,5 @@ border: none
 a {
     color: clr.$primary;
     text-decoration: none;
+    font-weight: 300;
 }
