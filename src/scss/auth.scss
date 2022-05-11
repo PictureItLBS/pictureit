@@ -1,7 +1,12 @@
 @use "partials/colours" as clr;
 
+* {
+margin: none;
+}
+
 input, p, h1, label {
     color: clr.$primary
+    
 }
 
 .form-box {
@@ -33,6 +38,7 @@ p {
 }
 
 h1{
+
 }
 
 button {
