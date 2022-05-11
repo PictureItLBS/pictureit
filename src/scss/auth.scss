@@ -1,5 +1,9 @@
 @use "partials/colours" as clr;
 
+* {
+    margin: 5px;
+}
+
 .form-box {
     display: flex; 
     justify-content: center;
