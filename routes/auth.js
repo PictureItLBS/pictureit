@@ -1,7 +1,11 @@
 import argon2     from "argon2"
 import { db }     from "../modules/database/handler.js"
+import jwt        from "jsonwebtoken"
 import { Router } from "express"
 import User       from "../models/User.js"
+import settings   from "../modules/settings.js"
+
+const TWO_HOURS_IN_MILLIS = 2 * 60 * 60 * 1000
 
 const Users = db.collection("users")
 
@@ -165,9 +169,26 @@ auth.post(
                         )
 
                     // TODO: Implement COOKIE with JWT and so.
+                    const token = jwt.sign(
+                        {
+                            _id:  user._id,
+                            name: user.name
+                        },
+                        settings.token_secret,
+                        { expiresIn: "2h" }
+                    )
+
+                    res.cookie(
+                        "api-token",
+                        token,
+                        {
+                            expires:  new Date(Date.now() + TWO_HOURS_IN_MILLIS),
+                            httpOnly: true,
+                        }
+                    )
 
                     if (req.originalUrl.startsWith("/api"))
-                        return res.send("Signed in...")
+                        return res.send("Signed in! Make sure to save your api-token cookie!")
 
                     res.redirect("/app/feed")
                 }
