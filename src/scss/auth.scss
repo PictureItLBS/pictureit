@@ -4,7 +4,15 @@
     margin: none;
 }
 
-form { 
+form {
+    background-color: clr.$backdrop;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding: 1.5rem;
+    border-radius: 1rem 1rem 2rem 1rem;
+
     input, p, h1, label {
         color: clr.$primary
     }
@@ -13,29 +21,18 @@ form {
         color: clr.$destructive;
         margin-bottom: 1.5rem;
     }
+
+    a {
+        color: clr.$primary;
+        text-decoration: none;
+    }
 }
 
 .form-box {
-    display: flex; 
+    display: flex;
     justify-content: center;
     height: 100vh;
 }
-
-form {
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    width: fit-content;
-    background-color: clr.$backdrop;
-    padding: 1.5rem;
-    border-radius: 1rem 1rem 2rem 1rem;
-}
-
-form {
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-} 
 
 input, p, h1, label {
     color: clr.$primary
@@ -58,13 +55,8 @@ input {
 }
 
 h1{
-    font-weight: 300; 
+    font-weight: 300;
     margin-bottom: 1.5rem;
-}
-
-a {
-    color: clr.$primary;
-    text-decoration: none;
 }
 
 button {
