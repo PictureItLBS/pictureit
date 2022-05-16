@@ -29,11 +29,21 @@ form {
     background-color: clr.$backdrop;
     padding: 1.5rem;
     border-radius: 1rem 1rem 2rem 1rem;
-
 }
 
+form {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+} 
 
+input, p, h1, label {
+    color: clr.$primary
+}
 
+h1 {
+    font-weight: 300;
+}
 
 
 
@@ -47,7 +57,6 @@ input {
     margin-bottom: 1.5rem;
 }
 
-
 h1{
     font-weight: 300; 
     margin-bottom: 1.5rem;
@@ -59,12 +68,12 @@ a {
 }
 
 button {
-background-color: clr.$primary;
-color: clr.$dark;
-width: fit-content;
-height: 2rem;
-padding: 0 1rem;
-border-radius: .5rem .5rem .75rem .5rem;
-border: none;
-margin-bottom: 1rem;
+    background-color: clr.$primary;
+    color: clr.$dark;
+    width: fit-content;
+    height: 2rem;
+    padding: 0 1rem;
+    border-radius: .5rem .5rem .75rem .5rem;
+    border: none;
+    margin-bottom: 1rem;
 }
