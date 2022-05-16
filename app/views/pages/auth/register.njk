@@ -5,10 +5,10 @@
     <div class="form-box">
 
         <form action="./register" method="post">
-            <h1>Create account!</h1>
+            <h1>Create account</h1>
 
             {% if data.error %}
-                <p>{{ data.error }}</p>
+                <p class="error">Oh noes! {{ data.error }}</p>
             {% endif %}
 
             <label for="username">Username:</label>
@@ -21,10 +21,11 @@
             <input type="password" name="confirmPass" placeholder="|\/|'/ s|_|p3r s3cr37 p4ss\/\/0rd">
 
             <button type="submit">Create account!</button>
-            <a href="/app/auth/login">Log in! </a>
+            <a href="/app/auth/login">Log in</a>
             <a href="#">Reset Password</a>
 
         </form>
+          <img src="/static/logo.svg">
     </div>
 
 {% endblock %}
