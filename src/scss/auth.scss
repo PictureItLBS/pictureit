@@ -4,7 +4,7 @@
     margin: none;
 }
 
-form {
+.form-box > form {
     background-color: clr.$backdrop;
     width: fit-content;
     display: flex;
@@ -38,12 +38,6 @@ input, p, h1, label {
     color: clr.$primary
 }
 
-h1 {
-    font-weight: 300;
-}
-
-
-
 input {
     background-color: clr.$darker;
     border-style: solid;
@@ -57,6 +51,17 @@ input {
 h1{
     font-weight: 300;
     margin-bottom: 1.5rem;
+}
+
+form > a {
+    color: clr.$primary;
+    text-decoration: none;
+    font-weight: 400;
+    margin: 0.125rem;
+}
+
+a:hover {
+
 }
 
 button {
