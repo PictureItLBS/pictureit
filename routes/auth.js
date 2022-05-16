@@ -1,6 +1,11 @@
+import argon2     from "argon2"
 import { db }     from "../modules/database/handler.js"
+import jwt        from "jsonwebtoken"
 import { Router } from "express"
 import User       from "../models/User.js"
+import settings   from "../modules/settings.js"
+
+const TWO_HOURS_IN_MILLIS = 2 * 60 * 60 * 1000
 
 const Users = db.collection("users")
 
@@ -10,9 +15,9 @@ auth.get("/login",    (_, res) => res.respond(true, "Please log in...",   "pages
 auth.get("/register", (_, res) => res.respond(true, "Please register...", "pages/auth/register.njk", {}))
 
 auth.post(
-    "/login",
+    "/register",
     async (req, res) => {
-        const { username, password, confirmation } = req.body
+        const { username, password, confirmPass } = req.body
 
         if (!username)
             return res.respond(
@@ -35,7 +40,7 @@ auth.post(
                 {}
             )
 
-        if (password !== confirmation)
+        if (password !== confirmPass)
             return res.respond(
                 false,
                 {
@@ -108,10 +113,99 @@ auth.post(
 )
 
 auth.post(
-    "/register.njk",
-    (req, res) =>{
+    "/login",
+    async (req, res) =>{
         const { username, password } = req.body
 
+        if (!username)
+            return res.respond(
+                false,
+                {
+                    error: "Please enter a username!",
+                },
+                "pages/auth/login.njk",
+                {}
+            )
+
+        if (!password)
+            return res.respond(
+                false,
+                {
+                    error: "Please enter a password!",
+                    username
+                },
+                "pages/auth/login.njk",
+                {}
+            )
+
+        /**
+         * @type {import("../models/User.js").User}
+         */
+        const user = await Users.findOne({ name: username })
+
+        if (!user)
+            return res.respond(
+                false,
+                {
+                    error: "That user doesn't exist!",
+                    username
+                },
+                "pages/auth/login.njk",
+                {}
+            )
+
+        argon2.verify(user.password, password)
+            .then(
+                verified => {
+                    if (!verified)
+                        return res.respond(
+                            false,
+                            {
+                                error: "Password is incorrect!",
+                                username
+                            },
+                            "pages/auth/login.njk",
+                            {}
+                        )
+
+                    // TODO: Implement COOKIE with JWT and so.
+                    const token = jwt.sign(
+                        {
+                            _id:  user._id,
+                            name: user.name
+                        },
+                        settings.token_secret,
+                        { expiresIn: "2h" }
+                    )
+
+                    res.cookie(
+                        "api-token",
+                        token,
+                        {
+                            expires:  new Date(Date.now() + TWO_HOURS_IN_MILLIS),
+                            httpOnly: true,
+                        }
+                    )
+
+                    if (req.originalUrl.startsWith("/api"))
+                        return res.send("Signed in! Make sure to save your api-token cookie!")
+
+                    res.redirect("/app/feed")
+                }
+            ).catch(
+                err => {
+                    console.dir(err)
+                    res.respond(
+                        false,
+                        {
+                            error: "Password is incorrect!",
+                            username
+                        },
+                        "pages/auth/login.njk",
+                        {}
+                    )
+                }
+            )
     }
 )
 

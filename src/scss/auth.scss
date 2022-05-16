@@ -1,13 +1,34 @@
 @use "partials/colours" as clr;
 
 * {
-    margin: 5px;
+    margin: none;
+}
+
+form { 
+    input, p, h1, label {
+        color: clr.$primary
+    }
+
+    p.error {
+        color: clr.$destructive;
+        margin-bottom: 1.5rem;
+    }
 }
 
 .form-box {
     display: flex; 
     justify-content: center;
     height: 100vh;
+}
+
+form {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    background-color: clr.$backdrop;
+    padding: 1.5rem;
+    border-radius: 1rem 1rem 2rem 1rem;
 }
 
 form {
@@ -24,27 +45,35 @@ h1 {
     font-weight: 300;
 }
 
+
+
 input {
     background-color: clr.$darker;
     border-style: solid;
-    border-radius: 5px 5px 13px 5px;
+    border-radius: .5rem .5rem 1rem .5rem;
     border-color: clr.$primary;
     width: 25rem;
     height: 2rem;
+    margin-bottom: 1.5rem;
 }
 
-button {
-background-color: clr.$primary;
-color: clr.$dark;
-width: fit-content;
-height: 2rem;
-padding: 0 1rem;
-border-radius: 5px 5px 13px 5px;
-border: none
+h1{
+    font-weight: 300; 
+    margin-bottom: 1.5rem;
 }
 
 a {
     color: clr.$primary;
     text-decoration: none;
-    font-weight: 300;
+}
+
+button {
+    background-color: clr.$primary;
+    color: clr.$dark;
+    width: fit-content;
+    height: 2rem;
+    padding: 0 1rem;
+    border-radius: .5rem .5rem .75rem .5rem;
+    border: none;
+    margin-bottom: 1rem;
 }
