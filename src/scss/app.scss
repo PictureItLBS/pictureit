@@ -19,7 +19,33 @@ nav {
     background-color: clr.$dark;
     box-shadow: .5rem 0 1rem clr.$darker;
 
-    > .spacer {
+    a {
+        width: fit-content;
+        text-decoration: none;
+        margin: .5rem 0;
+
+        span[icon] {
+            display: inline-block;
+            fill: clr.$text;
+            height: 2rem;
+            width: 2rem;
+            margin-right: .75rem;
+            position: relative;
+            bottom: -.5rem;
+        }
+
+        &:hover {
+            color: clr.$primary;
+            span[icon] { fill: clr.$primary }
+        }
+    }
+
+    a.current {
+        color: clr.$primary;
+        span[icon] { fill: clr.$primary }
+    }
+
+    .spacer {
         flex-grow: 1;
     }
 }
