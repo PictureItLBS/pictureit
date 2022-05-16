@@ -26,6 +26,11 @@ form {
         color: clr.$primary;
         text-decoration: none;
     }
+
+    h1 {
+        font-weight: 300;
+        margin-bottom: 1.5rem;
+    }
 }
 
 .form-box {
@@ -38,12 +43,6 @@ input, p, h1, label {
     color: clr.$primary
 }
 
-h1 {
-    font-weight: 300;
-}
-
-
-
 input {
     background-color: clr.$darker;
     border-style: solid;
@@ -52,20 +51,4 @@ input {
     width: 25rem;
     height: 2rem;
     margin-bottom: 1.5rem;
-}
-
-h1{
-    font-weight: 300;
-    margin-bottom: 1.5rem;
-}
-
-button {
-    background-color: clr.$primary;
-    color: clr.$dark;
-    width: fit-content;
-    height: 2rem;
-    padding: 0 1rem;
-    border-radius: .5rem .5rem .75rem .5rem;
-    border: none;
-    margin-bottom: 1rem;
 }

@@ -4,52 +4,52 @@ body.app {
     display: grid;
     grid-template-areas: 'aside main';
     grid-template-columns: max-content 1fr;
-}
 
-nav {
-    grid-area: aside;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    position: sticky;
-    top: 0;
+    nav {
+        grid-area: aside;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        position: sticky;
+        top: 0;
 
-    margin-right: 3rem;
-    padding: 2rem;
-    background-color: clr.$dark;
-    box-shadow: .5rem 0 1rem clr.$darker;
+        margin-right: 3rem;
+        padding: 2rem;
+        background-color: clr.$dark;
+        box-shadow: .5rem 0 1rem clr.$darker;
 
-    a {
-        width: fit-content;
-        text-decoration: none;
-        margin: .5rem 0;
+        a {
+            width: fit-content;
+            text-decoration: none;
+            margin: .5rem 0;
 
-        span[icon] {
-            display: inline-block;
-            fill: clr.$text;
-            height: 2rem;
-            width: 2rem;
-            margin-right: .75rem;
-            position: relative;
-            bottom: -.5rem;
+            span[icon] {
+                display: inline-block;
+                fill: clr.$text;
+                height: 2rem;
+                width: 2rem;
+                margin-right: .75rem;
+                position: relative;
+                bottom: -.5rem;
+            }
+
+            &:hover {
+                color: clr.$primary;
+                span[icon] { fill: clr.$primary }
+            }
         }
 
-        &:hover {
+        a.current {
             color: clr.$primary;
             span[icon] { fill: clr.$primary }
         }
+
+        .spacer {
+            flex-grow: 1;
+        }
     }
 
-    a.current {
-        color: clr.$primary;
-        span[icon] { fill: clr.$primary }
+    main {
+        grid-area: main;
     }
-
-    .spacer {
-        flex-grow: 1;
-    }
-}
-
-main {
-    grid-area: main;
 }

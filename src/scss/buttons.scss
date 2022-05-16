@@ -1,15 +1,26 @@
 @use "partials/colours" as clr;
 
-.primary {
-    padding: 3rem;
+button {
     background-color: clr.$primary;
-    display: grid;
-}
+    color: clr.$dark;
+    width: fit-content;
+    height: 2rem;
+    padding: 0 1rem;
+    border-radius: .5rem .5rem .75rem .5rem;
+    border: none;
+    margin-bottom: 1rem;
 
-.secondary {
-    padding: 3rem;
-    background-color: clr.$dark;
-    border-color: clr.$primary;
-    border-width: 2px;
+    .primary {
+        padding: 3rem;
+        background-color: clr.$primary;
+        display: grid;
+    }
 
+    .secondary {
+        padding: 3rem;
+        background-color: clr.$dark;
+        border-color: clr.$primary;
+        border-width: 2px;
+
+    }
 }
