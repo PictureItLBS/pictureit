@@ -3,7 +3,7 @@ import { response } from "express"
 const respondFuncs = {
     /**
      * Gets an app-responder. (HTML)
-     * @param {response} res 
+     * @param {response} res
      * @returns {Function} Renders the response as HTML.
      */
     app: res => (_, data, template, options={}) =>
@@ -11,7 +11,7 @@ const respondFuncs = {
 
     /**
      * Gets an api-responder. (JSON)
-     * @param {response} res 
+     * @param {response} res
      * @returns {Function}
      */
     api: res => (success, data) =>
@@ -31,7 +31,7 @@ const respondFuncs = {
  * )
  * ---
  * @param {"app" | "api"} type The type of bye-function to use.)
- * @returns {Function} 
+ * @returns {Function}
  */
 export default function apiAppRouter(type) {
     const respondFunc = respondFuncs[type] ?? respondFuncs.api
