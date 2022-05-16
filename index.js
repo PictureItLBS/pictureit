@@ -1,12 +1,13 @@
-import chokidar   from "chokidar"
-import docs       from "./routes/docs.js"
-import express    from "express"
-import fs         from "fs"
-import getLogger  from "./modules/logger.js"
-import nunjucks   from "nunjucks"
-import routes     from "./routes/entrypoint.js"
-import sass       from "sass"
-import settings   from "./modules/settings.js"
+import cookieParser from "cookie-parser"
+import chokidar     from "chokidar"
+import docs         from "./routes/docs.js"
+import express      from "express"
+import fs           from "fs"
+import getLogger    from "./modules/logger.js"
+import nunjucks     from "nunjucks"
+import routes       from "./routes/entrypoint.js"
+import sass         from "sass"
+import settings     from "./modules/settings.js"
 
 // SETTINGS
 const PORT = 12345
@@ -73,6 +74,7 @@ function startServer(debug) {
         }
     )
 
+    server.use(cookieParser())
     server.use(express.json())
     server.use(express.urlencoded({ extended: true }))
 

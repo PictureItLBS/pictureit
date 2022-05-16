@@ -1,14 +1,14 @@
 import jwt      from "jsonwebtoken"
 import settings from "./settings.js"
 import {
-    Request,
-    Response
+    request,
+    response
 } from "express"
 
 /**
  * This function validates the api-token cookie.
- * @param {Request}  req
- * @param {Response} res
+ * @param {request}  req
+ * @param {response} res
  * @param {Function} next
  */
 export default function validateToken(req, res, next) {
@@ -20,5 +20,5 @@ export default function validateToken(req, res, next) {
     if (!jwt.verify(token, settings.token_secret))
         return res.respond(false, "Your token is invalid!", "pages/auth/login.njk", {})
 
-    next(req, res)
+    next()
 }
