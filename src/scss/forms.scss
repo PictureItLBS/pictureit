@@ -43,13 +43,6 @@ input, p, h1, label {
     color: clr.$primary
 }
 
-<<<<<<< Updated upstream:src/scss/forms.scss
-=======
-h1 {
-    font-weight: 300;
-}
-    
->>>>>>> Stashed changes:src/scss/auth.scss
 input {
     background-color: clr.$darker;
     border-style: solid;
@@ -58,34 +51,4 @@ input {
     width: 25rem;
     height: 2rem;
     margin-bottom: 1.5rem;
-<<<<<<< Updated upstream:src/scss/forms.scss
-=======
-    margin-top: 0.3rem;
-}
-
-input:hover {
-    border-color: clr.$primary;
-}
-
-
-h1{
-    font-weight: 300; 
-    margin-bottom: 1.5rem;
-}
-
-a {
-    color: clr.$primary;
-    text-decoration: none;
-}
-
-button {
-    background-color: clr.$primary;
-    color: clr.$dark;
-    width: fit-content;
-    height: 2rem;
-    padding: 0 1rem;
-    border-radius: .5rem .5rem .75rem .5rem;
-    border: none;
-    margin-bottom: 1rem;
->>>>>>> Stashed changes:src/scss/auth.scss
 }
