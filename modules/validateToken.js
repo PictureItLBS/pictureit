@@ -15,10 +15,30 @@ export default function validateToken(req, res, next) {
     const token = req.cookies["api-token"] ?? null
 
     if (!token)
-        return res.respond(false, "You're not signed in!", "pages/auth/login.njk", {})
+        return res.respond(
+            false,
+            {
+                msg: "You're not signed in!",
+                error: "You need to be logged in to do this..."
+            },
+            "pages/auth/login.njk",
+            {
+                urlRedir: req.originalUrl
+            }
+        )
 
     if (!jwt.verify(token, settings.token_secret))
-        return res.respond(false, "Your token is invalid!", "pages/auth/login.njk", {})
+        return res.respond(
+            false,
+            {
+                msg: "Your api-token is invalid!",
+                error: "Seems as if your login-session has ran out..."
+            },
+            "pages/auth/login.njk",
+            {
+                urlRedir: req.originalUrl
+            }
+        )
 
     next()
 }

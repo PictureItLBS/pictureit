@@ -7,7 +7,7 @@
 {% block body %}
     <div class="form-box">
 
-        <form action="./login" method="post">
+        <form action="/app/auth/login" method="post">
             <h1>Log in</h1>
 
             {% if data.error %}
@@ -19,6 +19,8 @@
 
             <label for="password">Password:</label>
             <input type="password" name="password" placeholder="|/|'/ s|_|p3r s3cr37 p4ss//0rd">
+
+            <input type="text" name="url-redir" value="{{ options.urlRedir }}" style="display: none;">
 
             <button type="submit">Sign in</button>
             <a href="/app/auth/register">Create Account</a>

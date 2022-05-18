@@ -116,6 +116,7 @@ auth.post(
     "/login",
     async (req, res) =>{
         const { username, password } = req.body
+        const urlRedir               = req.body["url-redir"] ?? "/app/feed"
 
         if (!username)
             return res.respond(
@@ -135,7 +136,9 @@ auth.post(
                     username
                 },
                 "pages/auth/login.njk",
-                {}
+                {
+                    urlRedir
+                }
             )
 
         /**
@@ -151,7 +154,9 @@ auth.post(
                     username
                 },
                 "pages/auth/login.njk",
-                {}
+                {
+                    urlRedir
+                }
             )
 
         argon2.verify(user.password, password)
@@ -165,7 +170,9 @@ auth.post(
                                 username
                             },
                             "pages/auth/login.njk",
-                            {}
+                            {
+                                urlRedir
+                            }
                         )
 
                     // TODO: Implement COOKIE with JWT and so.
@@ -190,7 +197,7 @@ auth.post(
                     if (req.originalUrl.startsWith("/api"))
                         return res.send("Signed in! Make sure to save your api-token cookie!")
 
-                    res.redirect("/app/feed")
+                    res.redirect(urlRedir)
                 }
             ).catch(
                 err => {
