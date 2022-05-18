@@ -197,7 +197,8 @@ auth.post(
                     if (req.originalUrl.startsWith("/api"))
                         return res.send("Signed in! Make sure to save your api-token cookie!")
 
-                    res.redirect(urlRedir)
+                    console.dir(urlRedir)
+                    res.redirect(urlRedir ? urlRedir : "/app/feed")
                 }
             ).catch(
                 err => {
@@ -209,7 +210,9 @@ auth.post(
                             username
                         },
                         "pages/auth/login.njk",
-                        {}
+                        {
+                            urlRedir
+                        }
                     )
                 }
             )
