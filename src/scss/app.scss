@@ -39,7 +39,7 @@ body.app {
             }
         }
 
-        a.current {
+        a.active {
             color: clr.$primary;
             span[icon] { fill: clr.$primary }
         }

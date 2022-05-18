@@ -14,11 +14,11 @@
 
 <body class="app">
     <nav>
-        <a href="/app/feed" class="current"><span icon="feed"></span>Feed</a>
-        <a href="/app/explore"><span icon="explore"></span>Explore</a>
-        <a href="/app/profile"><span icon="profile"></span>Profile</a>
+        <a class="{{ "active" if options.activeTab === "feed" }}" href="/app/feed"><span icon="feed"></span>Feed</a>
+        <a class="{{ "active" if options.activeTab === "explore" }}" href="/app/explore"><span icon="explore"></span>Explore</a>
+        <a class="{{ "active" if options.activeTab === "profile" }}" href="/app/profile"><span icon="profile"></span>Profile</a>
         <div class="spacer"></div>
-        <a href="/app/news"><span icon="feed"></span>News</a>
+        <a class="{{ "active" if options.activeTab === "news" }}" href="/app/news"><span icon="feed"></span>News</a>
         <a href="/app/profile/settings"><span icon="profile"></span>Settings</a>
     </nav>
     <main>
