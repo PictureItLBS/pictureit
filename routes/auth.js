@@ -175,7 +175,6 @@ auth.post(
                             }
                         )
 
-                    // TODO: Implement COOKIE with JWT and so.
                     const token = jwt.sign(
                         {
                             _id:  user._id,
@@ -197,7 +196,6 @@ auth.post(
                     if (req.originalUrl.startsWith("/api"))
                         return res.send("Signed in! Make sure to save your api-token cookie!")
 
-                    console.dir(urlRedir)
                     res.redirect(urlRedir ? urlRedir : "/app/feed")
                 }
             ).catch(
