@@ -1,1 +1,22 @@
 {% extends "templates/app.njk" %}
+
+{% block head %}
+    <title>PictureIt - {{ options.user.name or "USERNAME" }}</title>
+{% endblock %}
+
+{% block main %}
+    <div class="profile">
+        <img src="/static/logo.svg" loading="lazy">
+        <h1>{{ options.user.name or "USERNAME" }}</h1>
+        <div class="info">
+            <span icon="profile"></span><p>{{ options.user.followerCount or 0 }} followers</p>
+            <span icon="profile"></span><p>{{ options.user.followingCount or 0 }} following</p>
+            <span icon="like"></span><p>{{ options.user.likeCount or 0 }} likes</p>
+        </div>
+        <div class="actions">
+            <button>Follow</button>
+            <button>Report</button>
+        </div>
+    </div>
+    <div class="posts-container"></div>
+{% endblock %}
