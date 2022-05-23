@@ -1,0 +1,16 @@
+{% extends "templates/base.njk" %}
+
+{% block head %}
+<title>User</title>
+{% endblock %}
+
+{% block body %}
+    <div class="form-box">
+
+        <form action="/app/auth/userCreated" method="post">
+            <h1>User</h1>
+
+        </form>
+            <img src="/static/logo.svg">
+    </div>
+{% endblock %}
