@@ -6,7 +6,7 @@ main.landing {
 
     img {
         width: 40rem;
-        justify-content: center;
+        
     }
 
     header {
@@ -15,8 +15,12 @@ main.landing {
         > span {
             color: clr.$accent;
         }
-
-
     }
+
+    .primary, .secondary {
+            
+        
+    }
+
 }
 
