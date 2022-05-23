@@ -85,6 +85,12 @@ function startServer(debug) {
     server.use("/static", express.static("./app/static"))
     server.get("/",       (_, res) => res.redirect("/app"))
 
+    // Make errors hidden from the web browser...
+    server.use((err, req, res, next) => {
+        console.error(err)
+        res.status(500).send("Sorry, something seems to have gone wrong on the server side! :'c")
+    })
+
     server.listen(
         PORT,
         () => {

@@ -1,0 +1,46 @@
+@use "partials/colours" as clr;
+
+.profile {
+    padding: 2rem;
+    background-color: clr.$standout;
+    border-radius: 1rem 1rem 4rem 1rem;
+    width: min(90ch, 90%);
+    display: grid;
+    grid-template-areas: 'pfp name'
+                         'pfp info'
+                         'pfp actions';
+    grid-template-columns: fit-content 1fr;
+    grid-template-rows: repeat(auto, 3);
+    place-items: center start;
+
+    img {
+        grid-area: pfp;
+        margin-right: 2rem;
+    }
+
+    h1 {
+        grid-area: name;
+        font-weight: 100;
+    }
+
+    .info {
+        grid-area: info;
+        display: flex;
+        align-items: center;
+
+        [icon] {
+            fill: clr.$text;
+            display: inline-block;
+            height: 2rem;
+            width: 2rem;
+        }
+
+        p {
+            margin: auto 2rem auto .5rem;
+        }
+    }
+
+    .actions {
+        grid-area: actions;
+    }
+}

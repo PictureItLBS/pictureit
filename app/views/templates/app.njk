@@ -3,10 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" type="text/css" href="https://fonts.googleapis.com">
-    <link rel="preconnect" type="text/css" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/static/main.css">
+
+    <style>
+        html { display: none;}
+    </style>
+
+    <noscript>
+        <link rel="preconnect" type="text/css" href="https://fonts.googleapis.com">
+        <link rel="preconnect" type="text/css" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/static/main.css">
+    </noscript>
+
+    <script defer>
+        document.head.innerHTML += `
+            <link rel="preconnect" type="text/css" href="https://fonts.googleapis.com">
+            <link rel="preconnect" type="text/css" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+            <link rel="stylesheet" type="text/css" href="/static/main.css">
+        `
+    </script>
+
     {% block head %}
         <title>PictureIt</title>
     {% endblock %}
@@ -14,11 +31,11 @@
 
 <body class="app">
     <nav>
-        <a href="/app/feed" class="current"><span icon="feed"></span>Feed</a>
-        <a href="/app/explore"><span icon="explore"></span>Explore</a>
-        <a href="/app/profile"><span icon="profile"></span>Profile</a>
+        <a class="{{ "active" if options.activeTab === "feed" }}" href="/app/feed"><span icon="feed"></span>Feed</a>
+        <a class="{{ "active" if options.activeTab === "explore" }}" href="/app/explore"><span icon="explore"></span>Explore</a>
+        <a class="{{ "active" if options.activeTab === "profile" }}" href="/app/profile"><span icon="profile"></span>Profile</a>
         <div class="spacer"></div>
-        <a href="/app/news"><span icon="feed"></span>News</a>
+        <a class="{{ "active" if options.activeTab === "news" }}" href="/app/news"><span icon="feed"></span>News</a>
         <a href="/app/profile/settings"><span icon="profile"></span>Settings</a>
     </nav>
     <main>
