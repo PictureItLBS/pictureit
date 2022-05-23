@@ -1,8 +1,22 @@
+@use "partials/colours" as clr;
+
 main.landing {
     display: grid;
     grid-template-areas: '...';
 
     img {
         width: 40rem;
+        justify-content: center;
+    }
+
+    header {
+        color: clr.$primary;
+
+        > span {
+            color: clr.$accent;
+        }
+
+
     }
 }
+
