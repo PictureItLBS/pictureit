@@ -1,15 +1,21 @@
 @use "partials/colours" as clr;
 
+* {
+    margin: none    
+}
+
 main.landing {
     display: grid;
-    grid-template-areas: '...';
+    grid-template-areas: 'header  logo'
+                         'actions logo';
 
     img {
+        grid-area: logo;
         width: 40rem;
-        
     }
 
     header {
+        grid-area: header;
         color: clr.$primary;
 
         > span {
@@ -17,10 +23,8 @@ main.landing {
         }
     }
 
-    .primary, .secondary {
-            
-        
+    .actions {
+        grid-area: actions;
     }
-
 }
 
