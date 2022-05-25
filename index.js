@@ -108,6 +108,7 @@ switch (process.argv[2] ?? null) {
         log("Creating directories...")
         fs.mkdirSync("./data/post_pictures",    { recursive: true })
         fs.mkdirSync("./data/profile_pictures", { recursive: true })
+        fs.writeFileSync("./data/invite_codes.json", "[]")
 
         log("Compiling SCSS...")
         compileScss()
