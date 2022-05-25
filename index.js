@@ -1,5 +1,6 @@
 import cookieParser from "cookie-parser"
 import chokidar     from "chokidar"
+import debug        from "./routes/debug.js"
 import docs         from "./routes/docs.js"
 import express      from "express"
 import fs           from "fs"
@@ -59,7 +60,7 @@ function scssCompiler() {
     )
 }
 
-function startServer(debug) {
+function startServer(isDebugOn) {
     log("Starting up the server...")
     const server = express()
 
@@ -70,7 +71,7 @@ function startServer(debug) {
             lstripBlocks: true,
             trimBlocks:   true,
             express:      server,
-            watch:        debug ?? false,
+            watch:        isDebugOn ?? false,
         }
     )
 
@@ -84,6 +85,9 @@ function startServer(debug) {
     server.use("/images", express.static("./data/images"))
     server.use("/static", express.static("./app/static"))
     server.get("/",       (_, res) => res.redirect("/app"))
+
+    if (isDebugOn)
+        server.use("/debug", debug)
 
     // Make errors hidden from the web browser...
     server.use((err, req, res, next) => {
