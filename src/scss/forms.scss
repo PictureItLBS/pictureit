@@ -21,18 +21,28 @@ form {
     border-radius: 1rem 1rem 2rem 1rem;
 
     input, p, h1, label {
-        color: clr.$primary
+        color: clr.$primary;
     }
 
     input {
-        background-color: clr.$darker;
-        border-style: solid;
+        margin: .15rem 0 1.5rem 0;
+        padding: .5rem 1rem;
+        color: clr.$text;
+        background-color: clr.$dark;
+        border: clr.$dark solid .15rem;
         border-radius: .5rem .5rem 1rem .5rem;
-        border-color: clr.$darker;
-        width: 25rem;
-        height: 2rem;
-        margin-bottom: 1.5rem;
-        margin-top: 0.3rem;
+        width: 45ch;
+
+        &:hover {
+            border-color: clr.$darker;
+            background-color: clr.$darker;
+            border-radius: .75rem .75rem 1.25rem .75rem;
+        }
+
+        &:active, &:focus {
+            outline: 0 none transparent;
+            border-color: clr.$primary;
+        }
     }
 
     p.error {
@@ -43,6 +53,11 @@ form {
     a {
         color: clr.$primary;
         text-decoration: none;
+        margin: .25rem 0;
+
+        &:first-of-type{
+            margin-top: 1rem;
+        }
     }
 
     h1 {

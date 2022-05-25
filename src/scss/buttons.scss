@@ -2,15 +2,21 @@
 
 
 button, .btn {
-    border: .1rem solid clr.$primary;
-    border-radius: 1rem 1rem 2rem 1rem;
+    font-size: 1rem;
+    display: inline-block;
+    cursor: pointer;
+    border: .15rem solid clr.$primary;
     border-radius: .5rem .5rem 1rem .5rem;
-    width: 10rem;
-    margin: auto 1.25rem;
-    padding: 1.5rem;             
+    margin: 1rem 0;
+    padding: 1rem 2rem;
     text-decoration: none;
     width: fit-content;
-    
+
+    &:hover {
+        border-radius: .75rem .75rem 1.5rem .75rem;
+        transform: translateY(-.15rem);
+    }
+
     &.primary {
         background-color: clr.$primary;
         color: clr.$dark;
