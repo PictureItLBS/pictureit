@@ -4,7 +4,7 @@ import jwt        from "jsonwebtoken"
 import { Router } from "express"
 import User       from "../models/User.js"
 import settings   from "../modules/settings.js"
-import { isValidInviteCode } from "../modules/inviteCode.js"
+import { invalidateInviteCode, isValidInviteCode } from "../modules/inviteCode.js"
 
 const TWO_HOURS_IN_MILLIS = 2 * 60 * 60 * 1000
 
@@ -123,6 +123,8 @@ auth.post(
                                 {}
                             )
                         )
+
+                    invalidateInviteCode(code)
 
                     res.respond(
                         true,
