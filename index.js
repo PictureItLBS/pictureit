@@ -86,8 +86,7 @@ function startServer(isDebugOn) {
     server.use("/static", express.static("./app/static"))
     server.get("/",       (_, res) => res.redirect("/app"))
 
-    if (isDebugOn)
-        server.use("/debug", debug)
+    if (isDebugOn) server.use("/debug", debug)
 
     // Make errors hidden from the web browser...
     server.use((err, req, res, next) => {

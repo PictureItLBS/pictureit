@@ -1,5 +1,6 @@
 import fs         from "fs"
 import { Router } from "express"
+import { generateInviteCodes, saveInviteCodes } from "../modules/inviteCode.js"
 
 const debug = Router()
 
@@ -18,6 +19,15 @@ debug.get(
             )
 
         res.send("FILE DOES NOT EXIST!")
+    }
+)
+
+debug.get(
+    "/generateCodes",
+    (req, res) => {
+        const inviteCodes = generateInviteCodes(100, 6)
+        saveInviteCodes(inviteCodes)
+        res.json(inviteCodes)
     }
 )
 

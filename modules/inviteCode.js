@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from "fs"
+import { existsSync, readFileSync, writeFileSync } from "fs"
 
 /**
  * Generates a random character in [0-9, a-z, A-Z].
@@ -51,6 +51,9 @@ export function saveInviteCodes(codes) {
  * @returns {[String]}
  */
 export function getInviteCodes() {
+    if (!existsSync("./data/invite_codes.json"))
+        writeFileSync("./data/invite_codes.json", "[]")
+
     const codes = JSON.parse(readFileSync("./data/invite_codes.json").toString())
     return codes
 }
@@ -61,8 +64,11 @@ export function getInviteCodes() {
  * @returns {Boolean} Returns true if the code is valid.
  */
 export function isValidInviteCode(code) {
+    if (!existsSync("./data/invite_codes.json"))
+        writeFileSync("./data/invite_codes.json", "[]")
+
     const codes = JSON.parse(readFileSync("./data/invite_codes.json").toString())
-    return codes.some(code)
+    return codes.some(_code => _code === code)
 }
 
 /**
@@ -70,6 +76,9 @@ export function isValidInviteCode(code) {
  * @param {String} code The code to invalidate.
  */
 export function invalidateInviteCode(code) {
+    if (!existsSync("./data/invite_codes.json"))
+        writeFileSync("./data/invite_codes.json", "[]")
+
     const codes     = JSON.parse(readFileSync("./data/invite_codes.json").toString())
     const codesLeft = codes.filter(_code => _code !== code)
     saveInviteCodes(codesLeft)

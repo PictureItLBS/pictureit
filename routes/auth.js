@@ -4,6 +4,7 @@ import jwt        from "jsonwebtoken"
 import { Router } from "express"
 import User       from "../models/User.js"
 import settings   from "../modules/settings.js"
+import { isValidInviteCode } from "../modules/inviteCode.js"
 
 const TWO_HOURS_IN_MILLIS = 2 * 60 * 60 * 1000
 
@@ -17,7 +18,7 @@ auth.get("/register", (_, res) => res.respond(true, "Please register...", "pages
 auth.post(
     "/register",
     async (req, res) => {
-        const { username, password, confirmPass } = req.body
+        const { username, password, confirmPass, invite } = req.body
 
         if (!username)
             return res.respond(
@@ -45,6 +46,28 @@ auth.post(
                 false,
                 {
                     error: "Password and password confirmation do not match!",
+                    username
+                },
+                "pages/auth/register.njk",
+                {}
+            )
+
+        if (!invite)
+            return res.respond(
+                false,
+                {
+                    error: "You forgot to enter your invite code!",
+                    username
+                },
+                "pages/auth/register.njk",
+                {}
+            )
+
+        if (!isValidInviteCode(invite))
+            return res.respond(
+                false,
+                {
+                    error: "Your invite code is invalid!",
                     username
                 },
                 "pages/auth/register.njk",
