@@ -9,19 +9,11 @@
     </style>
 
     <noscript>
-        <link rel="preconnect" type="text/css" href="https://fonts.googleapis.com">
-        <link rel="preconnect" type="text/css" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="/static/main.css">
+        {% include "./tags.njk" %}
     </noscript>
 
     <script defer>
-        document.head.innerHTML += `
-            <link rel="preconnect" type="text/css" href="https://fonts.googleapis.com">
-            <link rel="preconnect" type="text/css" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-            <link rel="stylesheet" type="text/css" href="/static/main.css">
-        `
+        document.head.innerHTML += `{% include "./tags.njk" %}`
     </script>
 
     {% block head %}
@@ -41,6 +33,40 @@
     <main>
         {% block main %}{% endblock %}
     </main>
-    <div class="quickies"></div>
+    <div class="quickies">
+        <button class="quickie-button" id="liked-posts">
+            <span icon="liked_posts"></span>
+            <span class="tooltip">Se inlägg du gillat.</span>
+        </button>
+
+        <button class="quickie-button" id="add-post">
+            <span icon="add_post"></span>
+            <span class="tooltip">Ladda upp ett inlägg!</span>
+        </button>
+
+        <button class="quickie-button" id="logo">
+            <img src="/static/logo.svg" loading="lazy">
+            <span class="tooltip">Hmm? Not implemented...</span>
+        </button>
+    </div>
+
+    <div class="popup-container">
+        <div class="popup popup-upload">
+            <h1 class="popup-title">Publish a post</h1>
+            <div class="popup-body">
+                <form action="/api/post/new" method="post" enctype="multipart/form-data">
+                    <input class="input-upload-image" type="file" name="image" id="image">
+                    <div class="upload-preview-image"></div>
+                    <textarea name="caption" id="caption" placeholder="Here you can write a short description..."></textarea>
+                    <div class="popup-actions">
+                        <input class="popup-action popup-action-yes btn primary" type="submit" value="Publish!">
+                        <button class="popup-action popup-action-no upload-cancel-btn secondary">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script src="/static/scripts/icons.js" type="module"></script>
+    <script src="/static/scripts/quickies.js" type="module"></script>
 </body>

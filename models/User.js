@@ -2,13 +2,15 @@ import { ObjectId } from "mongodb"
 import argon2       from "argon2"
 
 /**
- * @typedef  {object}   User        A user of PictureIt.
+ * @typedef  {Object}   User        A user of PictureIt.
  * @property {ObjectId} _id         The id of the user.
- * @property {string}   name        The name of the user.
- * @property {string}   password    The user's password. (SALTED and HASHED!)
+ * @property {String}   name        The name of the user.
+ * @property {String}   password    The user's password. (SALTED and HASHED!)
  * @property {Date}     joinedAt    The date when the user's account was created.
- * @property {object}   profile     The user's profile.
- * @property {string}   profile.bio The user's biography.
+ * @property {Boolean}  isAdmin     Whether or not the account is an admin.
+ * @property {Object}   profile     The user's profile.
+ * @property {String}   profile.bio The user's biography.
+ * @property {[String]} following   An array of `User._id`s that the user follows.
  */
 
 /**
@@ -36,10 +38,11 @@ export default function User(name, password) {
                 name:     name,
                 password: hash,
                 joinedAt: new Date(Date.now()),
-
+                isAdmin: false,
                 profile: {
                     bio: ""
-                }
+                },
+                following: []
             }
 
             resolve(user)

@@ -202,8 +202,9 @@ auth.post(
 
                     const token = jwt.sign(
                         {
-                            _id:  user._id,
-                            name: user.name
+                            _id:     user._id,
+                            name:    user.name,
+                            isAdmin: user.isAdmin ?? false,
                         },
                         settings.token_secret,
                         { expiresIn: "2h" }
