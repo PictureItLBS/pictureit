@@ -1,0 +1,14 @@
+@use "partials/colours" as clr;
+
+.box-form {
+    display:flex;
+    flex-direction: column; 
+    
+    > [icon] {
+        fill: clr.$text;    
+    }
+
+    > [type] {
+        place-content: center;    
+    }
+}

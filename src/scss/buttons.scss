@@ -17,11 +17,17 @@ button, .btn {
         transform: translateY(-.15rem);
     }
 
+    width: 10rem;
+    margin: auto 1.25rem;
+    padding: 1.5rem;
+    text-decoration: none;
+    width: fit-content;
+        
     &.primary {
         background-color: clr.$primary;
         color: clr.$dark;
     }
-
+    
     &.secondary {
         color: clr.$primary;
     }
