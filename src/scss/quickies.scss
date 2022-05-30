@@ -75,3 +75,70 @@
         }
     }
 }
+
+.popup-container {
+    display: none;
+    place-items: center;
+
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    backdrop-filter: blur(8px) opacity(100%);
+    background-color: clr.$darkerBackdrop;
+}
+
+.popup {
+    background-color: clr.$standout;
+    box-shadow: 0 16px 32px clr.$darker;
+
+    padding: 4rem 5rem;
+    width: min(200ch, 85%);
+
+    display: none;
+    grid-template-areas: 'title' 'text' 'actions';
+    border-radius: 1rem 1rem 4rem 1rem;
+}
+
+.popup-visible {
+    display: grid;
+}
+
+.popup-actions {
+    display: flex;
+    margin-top: 2rem;
+}
+
+.popup-action {
+    margin-right: 2rem;
+}
+
+.popup-action-no {
+    color: var(--text);
+    border-color: var(--text);
+
+    opacity: 0.5;
+}
+
+.upload-preview-image-container {
+    width: 100%;
+    height: 20vw;
+
+    background-color: var(--darker);
+    margin-bottom: 2rem;
+}
+
+.upload-preview-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem 0 0 1rem;
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+}

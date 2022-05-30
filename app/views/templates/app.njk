@@ -49,5 +49,26 @@
             <span class="tooltip">Hmm?</span>
         </button>
     </div>
+
+    <div class="popup-container">
+        <div class="popup popup-upload">
+            <h1 class="popup-title">Publish a post</h1>
+            <div class="popup-body">
+                <form action="/api/posts/new" method="post" enctype="multipart/form-data">
+                    <input class="input-upload-image" type="file" name="image" id="image">
+                    <div class="upload-preview-image-container">
+                        <div class="upload-preview-image"></div>
+                    </div>
+                    <textarea name="caption" id="caption" placeholder="Here you can write a short description..."></textarea>
+                    <div class="popup-actions">
+                        <input class="popup-action popup-action-yes" type="submit" value="Publish!">
+                        <button class="popup-action popup-action-no upload-cancel-btn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script src="/static/scripts/icons.js" type="module"></script>
+    <script src="/static/scripts/quickies.js" type="module"></script>
 </body>
