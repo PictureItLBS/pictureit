@@ -1,0 +1,77 @@
+@use "partials/colours" as clr;
+
+.quickies {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    position: fixed;
+    bottom: 1rem;
+    right: 2rem;
+
+    .quickie-button {
+        background-color: clr.$standout;
+        border: 0 none transparent;
+        border-radius: 100%;
+        box-shadow: 0 16px 32px clr.$darker;
+
+        width: 5rem;
+        height: 5rem;
+        margin: 1rem 0;
+        padding: 0;
+
+        position: relative;
+        display: grid;
+        place-items: center;
+
+        [icon] {
+            width: 100%;
+            height: 100%;
+            padding: 1rem;
+        }
+
+        .tooltip {
+            position: absolute;
+            right: -100vw;
+            width: max-content;
+
+            color: clr.$text;
+            background-color: clr.$standout;
+            padding: 1rem 2rem;
+
+            box-shadow: 0 16px 32px clr.$darker;
+            border-radius: .4rem .4rem .8rem .4rem;
+            opacity: 0;
+
+            transition: right .5s, opacity 1.5s;
+        }
+
+        &:hover {
+            border-radius: 1rem 1rem 2rem 1rem;
+
+            .tooltip {
+                right: 7rem;
+                opacity: 1;
+            }
+        }
+
+        &:last-child {
+            width: 7rem;
+            height: 7rem;
+
+            img {
+                transition: transform .3s;
+            }
+
+            &:hover {
+                .tooltip {
+                    right: 9rem;
+                }
+
+                img {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+}
