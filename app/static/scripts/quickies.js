@@ -1,8 +1,10 @@
-import popup from './popup.js'
+import popup from "./popup.js"
 
-document.querySelector('.quickie-button#liked-posts')
-    .addEventListener('click', ev => window.location.pathname = "/app/profile/likedPosts")
+// Liked posts
+document.querySelector(".quickie-button#liked-posts")
+    .addEventListener("click", ev => window.location.pathname = "/app/profile/likedPosts")
 
+// Publish post
 document.querySelector(".quickie-button#add-post")
     .addEventListener("click", ev => {
         ev.preventDefault()

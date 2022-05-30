@@ -46,7 +46,7 @@
 
         <button class="quickie-button" id="logo">
             <img src="/static/logo.svg" loading="lazy">
-            <span class="tooltip">Hmm?</span>
+            <span class="tooltip">Hmm? Not implemented...</span>
         </button>
     </div>
 
@@ -54,15 +54,13 @@
         <div class="popup popup-upload">
             <h1 class="popup-title">Publish a post</h1>
             <div class="popup-body">
-                <form action="/api/posts/new" method="post" enctype="multipart/form-data">
+                <form action="/api/post/new" method="post" enctype="multipart/form-data">
                     <input class="input-upload-image" type="file" name="image" id="image">
-                    <div class="upload-preview-image-container">
-                        <div class="upload-preview-image"></div>
-                    </div>
+                    <div class="upload-preview-image"></div>
                     <textarea name="caption" id="caption" placeholder="Here you can write a short description..."></textarea>
                     <div class="popup-actions">
-                        <input class="popup-action popup-action-yes" type="submit" value="Publish!">
-                        <button class="popup-action popup-action-no upload-cancel-btn">Cancel</button>
+                        <input class="popup-action popup-action-yes btn primary" type="submit" value="Publish!">
+                        <button class="popup-action popup-action-no upload-cancel-btn secondary">Cancel</button>
                     </div>
                 </form>
             </div>
