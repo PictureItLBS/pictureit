@@ -124,7 +124,7 @@ auth.post(
                             )
                         )
 
-                    invalidateInviteCode(code)
+                    invalidateInviteCode(invite)
 
                     res.respond(
                         true,
