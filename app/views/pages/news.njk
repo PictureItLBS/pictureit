@@ -1,1 +1,13 @@
 {% extends "templates/app.njk" %}
+
+{% block head %}
+    <title>PictureIt - News</title>
+{% endblock %}
+
+{% block main %}
+    {% for news in data.news %}
+        <div class="news">
+            {{ news | safe }}
+        </div>
+    {% endfor %}
+{% endblock %}
