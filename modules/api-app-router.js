@@ -42,9 +42,7 @@ export default function apiAppRouter(type) {
     const respondFunc = respondFuncs[type] ?? respondFuncs.api
 
     return (req, res, next) => {
-        const token = req.cookies["api-token"] ?? ""
-        const user  = jwt.verify(token, settings.token_secret) ?? {}
-        res.respond = respondFunc(res, user)
+        res.respond = respondFunc(res, req.user ?? {})
         next()
     }
 }

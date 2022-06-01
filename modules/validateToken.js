@@ -40,5 +40,7 @@ export default function validateToken(req, res, next) {
             }
         )
 
+    req.user = jwt.verify(token, settings.token_secret) ?? {}
+
     next()
 }
