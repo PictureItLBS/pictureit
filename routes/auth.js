@@ -141,7 +141,8 @@ auth.post(
     "/login",
     async (req, res) =>{
         const { username, password } = req.body
-        const urlRedir               = req.body["url-redir"] ?? "/app/feed"
+        const rawUrlRedir            = req.body["url-redir"] ?? "/app/feed"
+        const urlRedir               = rawUrlRedir.replace(/https?:\/\/[^/]*//g, "")
 
         if (!username)
             return res.respond(
