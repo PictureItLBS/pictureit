@@ -1,21 +1,26 @@
 import { response } from "express"
+import jwt          from "jsonwebtoken"
+import settings     from "./settings.js"
 
 const respondFuncs = {
     /**
      * Gets an app-responder. (HTML)
      * @param {response} res
+     * @param {Object}   user
      * @returns {Function} Renders the response as HTML.
      */
-    app: res => (_, data, template, options={}) =>
-            res.render(template, { data, options }),
+    app: (res, user) => (_, data, template, options={}) => {
+        options.user = user
+        res.render(template, { data, options })
+    },
 
     /**
      * Gets an api-responder. (JSON)
      * @param {response} res
      * @returns {Function}
      */
-    api: res => (success, data) =>
-            res.json({ success, data })
+    api: (res, user) => (success, data) =>
+        res.json({ success, data, user }),
 }
 
 /**
@@ -36,8 +41,10 @@ const respondFuncs = {
 export default function apiAppRouter(type) {
     const respondFunc = respondFuncs[type] ?? respondFuncs.api
 
-    return (_, res, next) => {
-        res.respond = respondFunc(res)
+    return (req, res, next) => {
+        const token = req.cookies["api-token"] ?? ""
+        const user  = jwt.verify(token, settings.token_secret) ?? {}
+        res.respond = respondFunc(res, user)
         next()
     }
 }
