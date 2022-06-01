@@ -6,7 +6,7 @@ const docs = Router()
 
 docs.get(
     "/",
-    (_, res) => 
+    (_, res) =>
         fs.readdir('app/views/docs/articles').then(
             articles => res.render(
                 "docs/index.njk",
@@ -19,7 +19,8 @@ docs.get(
 docs.get(
     "/:article",
     (req, res) => {
-        const article = req.params.article
+        // Make sure the user doesn't try to load a neferious path.
+        const article = req.params.article.replace("..", "").replace("/", "-")
 
         if (existsSync(`app/views/docs/articles/${article}.njk`))
             return res.render(`docs/articles/${article}.njk`)
