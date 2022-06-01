@@ -1,0 +1,31 @@
+{% extends "templates/app.njk" %}
+
+{% block head %}
+    <title>PictureIt - {{ options.user.name or "USERNAME" }}</title>
+{% endblock %}
+
+{% block main %}
+    <form action="/app/profile/settings/username" method="post">
+        <label for="username">Change username:</label>
+        <input type="text" name="username" id="username" value="{{ options.user.name or "USERNAME" }}">
+        <input class="btn secondary" type="submit" value="Change username!">
+    </form>
+
+    <form action="/app/profile/settings/pfp" method="post">
+        <img src="/images/profile_pictures/{{ options.user._id }}.webp" alt="Your profile picture.">
+        <label for="pfp">Change profile picture:</label>
+        <input type="file" name="pfp" id="pfp">
+        <input class="btn secondary" type="submit" value="Change profile picture!">
+    </form>
+
+    <form action="/app/profile/settings/bio" method="post">
+        <label for="bio">Change your biography:</label>
+        <textarea name="bio" id="bio">{{ data.bio }}</textarea>
+        <input class="btn secondary" type="submit" value="Change biography!">
+    </form>
+
+    <form action="/app/settings/mydata">
+        <label>Do you want to download your data?</label>
+        <input class="btn secondary" type="submit" value="Download my data!">
+    </form>
+{% endblock %}
