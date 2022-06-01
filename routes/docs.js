@@ -20,7 +20,7 @@ docs.get(
     "/:article",
     (req, res) => {
         // Make sure the user doesn't try to load a neferious path.
-        const article = req.params.article.replace("..", "").replace("/", "-")
+        const article = req.params.article.replace(/\.\.+/, "").replace("/", "-")
 
         if (existsSync(`app/views/docs/articles/${article}.njk`))
             return res.render(`docs/articles/${article}.njk`)
