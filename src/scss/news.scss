@@ -1,0 +1,9 @@
+@use "partials/colours" as clr;
+
+.news {
+    background-color: clr.$standout;
+    padding: 2rem;
+    margin: 1rem 0;   
+    border-radius: 1rem;
+    max-width: 130vh;
+}
