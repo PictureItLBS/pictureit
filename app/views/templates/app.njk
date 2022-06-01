@@ -29,6 +29,9 @@
         <div class="spacer"></div>
         <a class="{{ "active" if options.activeTab === "news" }}" href="/app/news"><span icon="feed"></span>News</a>
         <a class="{{ "active" if options.activeTab === "settings" }}" href="/app/profile/settings"><span icon="profile"></span>Settings</a>
+        {% if options.user.isAdmin %}
+            <a class="{{ "active" if options.activeTab === "admin" }}" href="/app/admin"><span icon="feed"></span>Admin area</a>
+        {% endif %}
     </nav>
     <main>
         {% block main %}{% endblock %}
