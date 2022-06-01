@@ -44,3 +44,22 @@ export default function validateToken(req, res, next) {
 
     next()
 }
+
+/**
+ * This function gets user info from the 'api-token' cookie.
+ * @param {request} req A regular express request.
+ * @returns {Object} User info.
+ */
+export function getUserInfo(req) {
+    const token = req.cookies["api-token"] ?? null
+
+    if (!token)
+        return {}
+
+    if (!jwt.verify(token, settings.token_secret))
+        return {}
+
+    const user = jwt.verify(token, settings.token_secret)
+
+    return user
+}

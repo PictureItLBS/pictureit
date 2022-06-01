@@ -1,6 +1,5 @@
-import { response } from "express"
-import jwt          from "jsonwebtoken"
-import settings     from "./settings.js"
+import { response }    from "express"
+import { getUserInfo } from "./validateToken.js"
 
 const respondFuncs = {
     /**
@@ -42,7 +41,8 @@ export default function apiAppRouter(type) {
     const respondFunc = respondFuncs[type] ?? respondFuncs.api
 
     return (req, res, next) => {
-        res.respond = respondFunc(res, req.user ?? {})
+        const user  = getUserInfo(req)
+        res.respond = respondFunc(res, user)
         next()
     }
 }
