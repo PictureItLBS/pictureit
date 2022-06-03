@@ -20,6 +20,7 @@ settings.get(
     }
 )
 
+// Set a new username
 settings.post(
     "/username",
     async (req, res) => {
@@ -46,6 +47,24 @@ settings.post(
 
         return res.respond(true, "Succesfully changed username! Please sign in again!", "pages/auth/changedUsername.njk", {})
     }
+)
+
+settings.post(
+    "/bio",
+    (req, res) =>
+        userDB.updateOne(
+            { _id: ObjectId(req.user._id) },
+            {
+                $set: { profile: { bio: req.body.bio } }
+            }
+        ).then(
+            () => {
+                if (req.url.startsWith("/app"))
+                    return res.redirect("/profile/settings")
+
+                res.respond(true, "Succesfully changed bio!", "pages/profile/settings.njk", {})
+            }
+        )
 )
 
 export default settings
