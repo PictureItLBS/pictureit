@@ -6,6 +6,9 @@
 
 {% block main %}
     <form action="/app/profile/settings/username" method="post">
+        {% if options.usernameError %}
+            <p class="error">{{ data.error }}</p>
+        {% endif %}
         <label for="username">Change username:</label>
         <input type="text" name="username" id="username" value="{{ options.user.name or "USERNAME" }}">
         <input class="btn secondary" type="submit" value="Change username!">
