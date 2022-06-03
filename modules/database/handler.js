@@ -17,3 +17,10 @@ await client.connect()
 
 log("Connected to the database!")
 export const db = client.db(settings.db_name)
+
+log("Creating indexes...")
+Promise.all([
+    db.collection("users").createIndex({ name:    1 }),
+    db.collection("posts").createIndex({ author:  1 }),
+    db.collection("posts").createIndex({ caption: 1 }),
+]).then(() => log("All indexes are created..."))
