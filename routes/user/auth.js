@@ -1,10 +1,10 @@
 import argon2     from "argon2"
-import { db }     from "../modules/database/handler.js"
+import { db }     from "../../modules/database/handler.js"
 import jwt        from "jsonwebtoken"
 import { Router } from "express"
-import User       from "../models/User.js"
-import settings   from "../modules/settings.js"
-import { invalidateInviteCode, isValidInviteCode } from "../modules/inviteCode.js"
+import User       from "../../models/User.js"
+import settings   from "../../modules/settings.js"
+import { invalidateInviteCode, isValidInviteCode } from "../../modules/inviteCode.js"
 
 const TWO_HOURS_IN_MILLIS = 2 * 60 * 60 * 1000
 

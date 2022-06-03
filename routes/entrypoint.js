@@ -1,11 +1,11 @@
 import { Router }   from "express"
 import apiAppRouter from "../modules/api-app-router.js"
-import admin        from "./admin.js"
-import auth         from "./auth.js"
-import feed         from "./feed.js"
-import explore      from "./explore.js"
+import admin        from "./user/admin.js"
+import auth         from "./user/auth.js"
+import feed         from "./app/feed.js"
+import explore      from "./app/explore.js"
 import news         from "./news.js"
-import profile      from "./profile.js"
+import profile      from "./user/profile.js"
 
 const routes = Router()
 routes.get("/", (_, res) => res.respond(true, "HELLO WORLD!", "pages/landing.njk", {}))

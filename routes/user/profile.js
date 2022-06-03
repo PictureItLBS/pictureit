@@ -1,5 +1,5 @@
 import { Router }    from "express"
-import validateToken from "../modules/validateToken.js"
+import validateToken from "../../modules/validateToken.js"
 
 const profile = Router()
 
