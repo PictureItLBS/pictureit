@@ -14,7 +14,10 @@
         <input class="btn secondary" type="submit" value="Change username!">
     </form>
 
-    <form action="/app/profile/settings/pfp" method="post">
+    <form action="/app/profile/settings/pfp" method="post" enctype="multipart/form-data">
+        {% if options.pfpError %}
+            <p class="error">{{ data.error }}</p>
+        {% endif %}
         <img src="/images/profile_pictures/{{ options.user._id }}.webp" alt="Your profile picture.">
         <label for="pfp">Change profile picture:</label>
         <input type="file" name="pfp" id="pfp">

@@ -5,10 +5,12 @@ import docs         from "./routes/docs.js"
 import express      from "express"
 import fs           from "fs"
 import getLogger    from "./modules/logger.js"
+import images       from "./routes/images.js"
 import nunjucks     from "nunjucks"
 import routes       from "./routes/entrypoint.js"
 import sass         from "sass"
 import settings     from "./modules/settings.js"
+import webp         from "webp-converter"
 
 // SETTINGS
 const PORT = 12345
@@ -82,7 +84,7 @@ function startServer(isDebugOn) {
     server.use("/api",    routes.api)
     server.use("/app",    routes.app)
     server.use("/docs",   docs)
-    server.use("/images", express.static("./data/images"))
+    server.use("/images", images)
     server.use("/static", express.static("./app/static"))
     server.get("/",       (_, res) => res.redirect("/app"))
 
@@ -102,6 +104,10 @@ function startServer(isDebugOn) {
         }
     )
 }
+
+// Make sure webp-converter has the permissions it needs and that a temp directory exists
+webp.grant_permission()
+try { fs.mkdirSync('./node_modules/webp-converter/temp') } catch (error) {}
 
 switch (process.argv[2] ?? null) {
     case "setup":

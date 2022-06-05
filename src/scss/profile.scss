@@ -7,20 +7,26 @@
     width: min(90ch, 90%);
     display: grid;
     grid-template-areas: 'pfp name'
+                         'pfp bio'
                          'pfp info'
                          'pfp actions';
     grid-template-columns: fit-content 1fr;
-    grid-template-rows: repeat(auto, 3);
+    grid-template-rows: repeat(auto, 4);
     place-items: center start;
 
     img {
         grid-area: pfp;
         margin-right: 2rem;
+        width: 20vmin;
     }
 
     h1 {
         grid-area: name;
         font-weight: 100;
+    }
+
+    .bio {
+        grid-area: bio;
     }
 
     .info {

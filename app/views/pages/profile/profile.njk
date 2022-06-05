@@ -1,22 +1,29 @@
 {% extends "templates/app.njk" %}
 
 {% block head %}
-    <title>PictureIt - {{ options.user.name or "USERNAME" }}</title>
+    <title>PictureIt - {{ data.user.name }}</title>
 {% endblock %}
 
 {% block main %}
-    <div class="profile">
-        <img src="/static/logo.svg" loading="lazy">
-        <h1>{{ options.user.name or "USERNAME" }}</h1>
-        <div class="info">
-            <span icon="profile"></span><p>{{ options.user.followerCount or 0 }} followers</p>
-            <span icon="profile"></span><p>{{ options.user.followingCount or 0 }} following</p>
-            <span icon="like"></span><p>{{ options.user.likeCount or 0 }} likes</p>
+    {% if data.error %}
+        <p>{{ data.error }}</p>
+    {% else %}
+        <div class="profile">
+            <img src="/images/pfp/{{ data.user._id }}" loading="lazy">
+            <h1>{{ data.user.name }}</h1>
+            <p class="bio">
+                {{ data.user.bio }}
+            </p>
+            <div class="info">
+                <span icon="profile"></span><p>{{ data.user.followerCount or 0 }} followers</p>
+                <span icon="profile"></span><p>{{ data.user.followingCount or 0 }} following</p>
+                <span icon="like"></span><p>{{ data.user.likeCount or 0 }} likes</p>
+            </div>
+            <div class="actions">
+                <button class="primary">Follow</button>
+                <button class="primary">Report</button>
+            </div>
         </div>
-        <div class="actions">
-            <button class="primary">Follow</button>
-            <button class="primary">Report</button>
-        </div>
-    </div>
-    <div class="posts-container"></div>
+        <div class="posts-container"></div>
+    {% endif %}
 {% endblock %}

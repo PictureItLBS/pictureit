@@ -25,7 +25,7 @@
     <nav>
         <a class="{{ "active" if options.activeTab === "feed" }}" href="/app/feed"><span icon="feed"></span>Feed</a>
         <a class="{{ "active" if options.activeTab === "explore" }}" href="/app/explore"><span icon="explore"></span>Explore</a>
-        <a class="{{ "active" if options.activeTab === "profile" }}" href="/app/profile"><span icon="profile"></span>Profile</a>
+        <a class="{{ "active" if options.activeTab === "profile" }}" href="/app/profile/{{ options.user.name }}"><span icon="profile"></span>Profile</a>
         <div class="spacer"></div>
         <a class="{{ "active" if options.activeTab === "news" }}" href="/app/news"><span icon="feed"></span>News</a>
         <a class="{{ "active" if options.activeTab === "settings" }}" href="/app/profile/settings"><span icon="profile"></span>Settings</a>
