@@ -7,7 +7,9 @@ const images = Router()
 images.get(
     "/pfp/:id",
     (req, res) => {
-        const imagePath = `./data/profile_pictures/${req.params.id}.webp`
+        // Make sure the user doesn't try to load a malicious path.
+        const imageFile = req.params.id.replace(/\.\.+/g, "").replace(/[/\\]/g, "")
+        const imagePath = `./data/profile_pictures/${imageFile}.webp`
         if (existsSync(imagePath))
             return readFile(imagePath)
                 .then(
