@@ -7,6 +7,7 @@ import fs           from "fs"
 import getLogger    from "./modules/logger.js"
 import images       from "./routes/images.js"
 import nunjucks     from "nunjucks"
+import rateLimit    from "express-rate-limit"
 import routes       from "./routes/entrypoint.js"
 import sass         from "sass"
 import settings     from "./modules/settings.js"
@@ -80,6 +81,12 @@ function startServer(isDebugOn) {
     server.use(cookieParser())
     server.use(express.json())
     server.use(express.urlencoded({ extended: true }))
+    server.use(
+        rateLimit({
+            max: 20,
+            windowMs: 100,
+        })
+    )
 
     server.use("/api",    routes.api)
     server.use("/app",    routes.app)
@@ -108,7 +115,8 @@ function startServer(isDebugOn) {
 // Make sure webp-converter has the permissions it needs and that a temp directory exists
 webp.grant_permission()
 try {
-    fs.mkdirSync("./node_modules/webp-converter/temp")
+    if (!fs.existsSync("./node_modules/webp-converter/temp"))
+        fs.mkdirSync("./node_modules/webp-converter/temp")
 } catch (error) {
     console.log("Please create this directory manually: ./node_modules/webp-converter/temp")
     process.exit()
