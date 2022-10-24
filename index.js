@@ -91,7 +91,7 @@ function startServer(isDebugOn) {
     if (isDebugOn) server.use("/debug", debug)
 
     // Make errors hidden from the web browser...
-    server.use((err, req, res, next) => {
+    server.use((err, req, res) => {
         console.error(err)
         res.status(500).send("Sorry, something seems to have gone wrong on the server side! :'c")
     })
@@ -107,35 +107,40 @@ function startServer(isDebugOn) {
 
 // Make sure webp-converter has the permissions it needs and that a temp directory exists
 webp.grant_permission()
-try { fs.mkdirSync('./node_modules/webp-converter/temp') } catch (error) {}
+try {
+    fs.mkdirSync("./node_modules/webp-converter/temp")
+} catch (error) {
+    console.log("Please create this directory manually: ./node_modules/webp-converter/temp")
+    process.exit()
+}
 
 switch (process.argv[2] ?? null) {
-    case "setup":
-        log("Creating directories...")
-        fs.mkdirSync("./data/post_pictures",    { recursive: true })
-        fs.mkdirSync("./data/profile_pictures", { recursive: true })
-        fs.writeFileSync("./data/invite_codes.json", "[]")
+case "setup":
+    log("Creating directories...")
+    fs.mkdirSync("./data/post_pictures",    { recursive: true })
+    fs.mkdirSync("./data/profile_pictures", { recursive: true })
+    fs.writeFileSync("./data/invite_codes.json", "[]")
 
-        log("Compiling SCSS...")
-        compileScss()
+    log("Compiling SCSS...")
+    compileScss()
 
-        log("Done!")
-        break
+    log("Done!")
+    break
 
-    case "default_config":
-        log("Creating default config...")
-        fs.writeFileSync("config.json", JSON.stringify(settings, null, 2))
-        log("Done!")
-        break
+case "default_config":
+    log("Creating default config...")
+    fs.writeFileSync("config.json", JSON.stringify(settings, null, 2))
+    log("Done!")
+    break
 
-    case "dev":
-        compileScss()
-        startServer(true)
-        scssCompiler()
-        break
+case "dev":
+    compileScss()
+    startServer(true)
+    scssCompiler()
+    break
 
-    default:
-        compileScss()
-        startServer()
-        break
+default:
+    compileScss()
+    startServer()
+    break
 }

@@ -1,4 +1,4 @@
-import colors from 'colors'
+import colors from "colors"
 
 /**
  * Takes any amount of arguments and prints them to the log...

@@ -7,7 +7,7 @@ const docs = Router()
 docs.get(
     "/",
     (_, res) =>
-        fs.readdir('app/views/docs/articles').then(
+        fs.readdir("app/views/docs/articles").then(
             articles => res.render(
                 "docs/index.njk",
                 {
@@ -25,7 +25,7 @@ docs.get(
         if (existsSync(`app/views/docs/articles/${article}.njk`))
             return res.render(`docs/articles/${article}.njk`)
 
-        fs.readdir('app/views/docs/articles').then(
+        fs.readdir("app/views/docs/articles").then(
             articles => res.render(
                 "docs/index.njk",
                 {

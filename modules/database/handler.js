@@ -1,4 +1,4 @@
-import { MongoClient, Db } from "mongodb"
+import { MongoClient } from "mongodb"
 import settings            from "../settings.js"
 import getLogger           from "../logger.js"
 
@@ -23,4 +23,6 @@ Promise.all([
     db.collection("users").createIndex({ name:    1 }),
     db.collection("posts").createIndex({ author:  1 }),
     db.collection("posts").createIndex({ caption: 1 }),
-]).then(() => log("All indexes are created..."))
+])
+    .then(() => log("All indexes are created..."))
+    .catch(err => console.error(err))

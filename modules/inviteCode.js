@@ -17,8 +17,8 @@ function randomChar() {
 export function generateInviteCode(length) {
     return Array(length)
         .fill()
-        .map(_ => randomChar())
-        .join('')
+        .map(() => randomChar())
+        .join("")
 }
 
 /**
@@ -30,7 +30,7 @@ export function generateInviteCode(length) {
 export function generateInviteCodes(amount, lengthPerCode) {
     const codes = Array(amount)
         .fill()
-        .map(_ => generateInviteCode(lengthPerCode))
+        .map(() => generateInviteCode(lengthPerCode))
 
     //                               v-- Just trust that this checks if all codes are unique.
     const uniqueCodes = codes.filter((v, i, arr) => arr.indexOf(v) === i)

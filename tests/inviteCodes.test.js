@@ -1,4 +1,4 @@
-import { generateInviteCode, generateInviteCodes } from "../modules/inviteCode.js"
+import { generateInviteCodes } from "../modules/inviteCode.js"
 
 export function test() {
     console.log("Testing invite code uniqueness...")

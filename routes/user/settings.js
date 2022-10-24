@@ -20,7 +20,7 @@ settings.get(
                 delete user.isAdmin
                 res.respond(true, user, "pages/profile/settings.njk", { activeTab: "settings" })
             }
-        )
+            )
     }
 )
 
